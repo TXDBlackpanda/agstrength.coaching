@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Trainer Stuttgart | Aaron — AG Strength</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --off-white: #f5f4f0;
+            --gray: #888;
+            --light-gray: #e0ddd6;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--off-white);
+            color: var(--black);
+            font-size: 16px;
+            padding-bottom: 60px;
+        }
+        a { text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ── TOP BAR ── */
+        .top-bar {
+            background: var(--black); color: var(--white);
+            padding: 9px 20px;
+            display: flex; justify-content: center; align-items: center;
+            gap: 20px; font-size: 11.5px; letter-spacing: 0.06em; font-weight: 500;
+            flex-wrap: wrap;
+        }
+        .top-bar a { color: var(--white); display: flex; align-items: center; gap: 6px; }
+        .top-bar-icons { display: flex; gap: 8px; }
+        .top-bar-icons a {
+            width: 26px; height: 26px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* ── NAVIGATION ── */
+        nav {
+            background: var(--white);
+            position: sticky; top: 0; z-index: 900;
+            border-bottom: 1px solid #eae8e2;
+        }
+        .nav-top {
+            padding: 0 24px;
+            display: flex; align-items: stretch;
+            height: 62px;
+        }
+        .logo-wrap {
+            display: flex; align-items: center; gap: 10px;
+            cursor: pointer; flex-shrink: 0; padding-right: 4px;
+            user-select: none;
+        }
+        .logo-wrap:hover .logo-name { opacity: 0.7; transition: opacity .15s; }
+        .logo-name {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 19px; font-weight: 800; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--black); line-height: 1.1;
+        }
+        .logo-sub {
+            font-size: 9.5px; letter-spacing: 0.25em;
+            font-weight: 400; display: block; color: #888;
+        }
+        .logo-slash {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 22px; font-weight: 300; color: #ccc;
+            margin: 0 6px; display: flex; align-items: center;
+        }
+
+        /* Nav tabs — same row as logo on desktop */
+        .nav-tabs {
+            display: flex; flex: 1;
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; align-items: stretch;
+        }
+        .nav-tabs::-webkit-scrollbar { display: none; }
+        .nav-tab {
+            padding: 0 18px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 13px; font-weight: 700;
+            letter-spacing: 0.12em; text-transform: uppercase;
+            color: #888; background: none; border: none; cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: color .15s, border-color .15s;
+            white-space: nowrap; display: flex; align-items: center;
+        }
+        .nav-tab:hover { color: var(--black); }
+        .nav-tab.active { color: var(--black); border-bottom: 2px solid var(--black); }
+
+        .hamburger {
+            background: none; border: none; cursor: pointer;
+            display: none; flex-direction: column; gap: 5px; padding: 4px;
+            align-items: center; justify-content: center;
+            margin-left: auto; flex-shrink: 0;
+        }
+        .hamburger span { display: block; width: 26px; height: 2px; background: var(--black); }
+
+        /* Mobile: hide tabs, show hamburger */
+        @media (max-width: 700px) {
+            .nav-tabs { display: none; }
+            .hamburger { display: flex; }
+            .logo-slash { display: none; }
+        }
+
+        /* ── MOBILE MENU ── */
+        .mobile-menu {
+            display: none; position: fixed; inset: 0;
+            background: var(--black); color: var(--white);
+            z-index: 1000; padding: 72px 40px 40px;
+            flex-direction: column; gap: 0;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a, .mobile-menu button.menu-nav-btn {
+            color: var(--white);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 38px; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.03em;
+            padding: 14px 0; border-bottom: 1px solid #1f1f1f;
+            display: block; width: 100%; text-align: left;
+            background: none; border-left: none; border-right: none; border-top: none;
+            cursor: pointer;
+        }
+        .mobile-menu a:last-child, .mobile-menu button.menu-nav-btn:last-of-type { border-bottom: none; }
+        .menu-close {
+            position: absolute; top: 18px; right: 24px;
+            background: none; border: none;
+            color: var(--white); font-size: 30px; cursor: pointer; line-height: 1;
+        }
+        .menu-cta {
+            margin-top: 28px !important;
+            background: var(--white) !important; color: var(--black) !important;
+            text-align: center !important; padding: 18px !important;
+            font-size: 14px !important; letter-spacing: 0.12em;
+            border: none !important;
+        }
+
+        /* ── PAGE VISIBILITY ── */
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* ── HERO ── */
+        .hero {
+            position: relative; min-height: calc(100vh - 120px);
+            display: flex; align-items: flex-end;
+            padding: 56px 24px; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center;
+            filter: brightness(1);
+        }
+        .hero-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to right, rgba(0,0,0,.74) 55%, rgba(0,0,0,.18) 100%),
+                        linear-gradient(to top, rgba(0,0,0,.5) 0%, rgba(0,0,0,0) 50%);
+        }
+        .hero-content {
+            position: relative; z-index: 2;
+            color: var(--white); max-width: 560px;
+        }
+        .hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(36px, 9vw, 54px);
+            font-weight: 900; font-style: italic; text-transform: uppercase;
+            line-height: 1.0; margin-bottom: 22px; letter-spacing: 0.01em;
+        }
+        .hero p { font-size: 16px; line-height: 1.65; margin-bottom: 36px; font-weight: 300; }
+        .hero-btns { display: flex; flex-direction: column; gap: 12px; }
+
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-block; text-align: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 13.5px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase;
+            padding: 17px 30px; transition: .2s; cursor: pointer; border: 2px solid;
+        }
+        .btn-white { background: var(--white); color: var(--black); border-color: var(--white); }
+        .btn-white:hover { background: transparent; color: var(--white); }
+        .btn-outline-white { background: transparent; color: var(--white); border-color: var(--white); }
+        .btn-outline-white:hover { background: var(--white); color: var(--black); }
+        .btn-black { background: var(--black); color: var(--white); border-color: var(--black); }
+        .btn-black:hover { background: transparent; color: var(--black); }
+        .btn-outline-white-lg {
+            display: inline-block; text-align: center;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 13.5px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase;
+            padding: 20px 52px; background: transparent; color: var(--white);
+            border: 2px solid var(--white); transition: .2s;
+        }
+        .btn-outline-white-lg:hover { background: var(--white); color: var(--black); }
+
+        /* ── STATS ── */
+        .stats { background: var(--black); color: var(--white); padding: 60px 24px 0; }
+        .stats-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 36px 20px; max-width: 640px; margin: 0 auto;
+        }
+        .stat-item { text-align: center; }
+        .stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 62px; font-weight: 800; line-height: 1; }
+        .stat-lbl { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: #777; font-weight: 500; margin-top: 6px; }
+        .location-strip {
+            margin-top: 52px; border-top: 1px solid #1e1e1e; padding: 20px 0;
+            text-align: center; font-size: 10.5px; letter-spacing: 0.22em;
+            text-transform: uppercase; color: #555;
+        }
+
+        /* ── SECTION SHARED ── */
+        .section { padding: 80px 24px; }
+        .section-lbl {
+            display: flex; align-items: center; gap: 12px;
+            font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+            color: var(--gray); margin-bottom: 14px; font-weight: 600;
+        }
+        .section-lbl::before { content: ''; display: block; width: 30px; height: 2px; background: currentColor; }
+        .section-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(34px, 8vw, 46px);
+            font-weight: 900; text-transform: uppercase; line-height: 1.0; letter-spacing: 0.01em;
+        }
+
+        /* ── ADVANTAGES ── */
+        .advantages { background: var(--off-white); }
+        .adv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--light-gray); margin-top: 40px; }
+        .adv-card { background: var(--white); padding: 28px 22px; }
+        .adv-num { font-size: 12px; color: #aaa; margin-bottom: 10px; font-weight: 500; }
+        .adv-title { font-size: 17px; font-weight: 700; margin-bottom: 8px; line-height: 1.2; }
+        .adv-text { font-size: 13.5px; color: #666; line-height: 1.6; }
+
+        /* ── SERVICE IMAGE CARDS ── */
+        .services-header { padding: 80px 24px 32px; background: var(--off-white); }
+        .service-card {
+            position: relative; height: 400px;
+            display: flex; align-items: flex-end;
+            padding: 32px 26px; margin: 0 16px 14px; overflow: hidden;
+            cursor: pointer;
+        }
+        .service-card-bg {
+            position: absolute; inset: 0;
+            background-size: cover; background-position: center; filter: brightness(.5);
+            transition: filter .35s, transform .35s;
+        }
+        .service-card:hover .service-card-bg { filter: brightness(.4); transform: scale(1.04); }
+        .service-card-content { position: relative; z-index: 2; color: var(--white); }
+        .service-card-title {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 28px; font-weight: 900; font-style: italic;
+            text-transform: uppercase; margin-bottom: 8px; letter-spacing: .01em;
+        }
+        .service-card-text { font-size: 14.5px; font-weight: 300; margin-bottom: 18px; line-height: 1.5; }
+        .service-link {
+            color: var(--white); font-size: 11.5px; font-weight: 700;
+            letter-spacing: 0.16em; text-transform: uppercase;
+            border-bottom: 2px solid var(--white); padding-bottom: 2px;
+        }
+        .services-spacer { height: 40px; background: var(--off-white); }
+
+        /* ── ABOUT ── */
+        .about-image { width: 100%; height: 420px; object-fit: cover; object-position: top; }
+        .about-content { padding: 52px 24px; background: var(--off-white); }
+        .about-content p { font-size: 15.5px; line-height: 1.8; color: #555; margin-bottom: 22px; }
+        .coaching-box { background: var(--black); color: var(--white); padding: 32px 28px; margin: 40px 0 0; }
+        .coaching-feature {
+            display: flex; align-items: center; gap: 14px;
+            padding: 12px 0; border-bottom: 1px solid #1e1e1e;
+            font-size: 14.5px; color: #ccc;
+        }
+        .coaching-feature:last-child { border-bottom: none; }
+        .check { color: var(--white); font-weight: 700; font-size: 15px; }
+
+        /* ── PRICING ── */
+        .pricing { background: var(--off-white); }
+        .pricing-cards { display: flex; flex-direction: column; gap: 18px; margin-top: 40px; }
+        .pricing-card { background: var(--white); border: 1px solid var(--light-gray); padding: 38px 30px; }
+        .p-badge {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase;
+            color: #aaa; margin-bottom: 14px; font-weight: 600;
+        }
+        .p-badge::before { content: ''; display: block; width: 22px; height: 2px; background: #aaa; }
+        .p-name { font-size: 21px; font-weight: 700; margin-bottom: 18px; }
+        .p-price { font-family: 'Barlow Condensed', sans-serif; font-size: 66px; font-weight: 800; line-height: 1; }
+        .p-price span { font-family: 'Barlow', sans-serif; font-size: 17px; font-weight: 400; color: #888; }
+        .p-vat { font-size: 12.5px; color: #aaa; margin: 4px 0 26px; }
+        .p-features { list-style: none; margin-bottom: 30px; }
+        .p-features li {
+            padding: 10px 0; border-bottom: 1px solid var(--light-gray);
+            font-size: 14.5px; display: flex; align-items: flex-start; gap: 13px;
+        }
+        .p-features li::before { content: '—'; color: #bbb; flex-shrink: 0; margin-top: 1px; }
+
+        /* ── SUBPAGE HERO (smaller) ── */
+        .sub-hero {
+            position: relative; height: 320px;
+            display: flex; align-items: flex-end; padding: 40px 24px; overflow: hidden;
+        }
+        .sub-hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; filter: brightness(.45); }
+        .sub-hero-content { position: relative; z-index: 2; color: var(--white); }
+        .sub-hero h1 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(34px, 9vw, 52px);
+            font-weight: 900; font-style: italic; text-transform: uppercase;
+            line-height: 1.0; margin-bottom: 10px;
+        }
+        .sub-hero p { font-size: 15px; font-weight: 300; max-width: 480px; }
+
+        /* ── INCLUDES BOX ── */
+        .includes-section { background: var(--off-white); padding: 60px 24px; }
+        .includes-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--light-gray); margin-top: 32px; }
+        .include-item {
+            background: var(--white); padding: 22px 24px;
+            display: flex; align-items: flex-start; gap: 16px;
+        }
+        .include-icon {
+            width: 36px; height: 36px; background: var(--black); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-size: 16px; flex-shrink: 0; margin-top: 2px;
+        }
+        .include-title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .include-text { font-size: 13.5px; color: #666; line-height: 1.6; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials { background: var(--black); color: var(--white); padding: 80px 24px; }
+        .testimonials .section-lbl { color: #555; }
+        .testimonials .section-lbl::before { background: #555; }
+        .testimonials .section-title { color: var(--white); margin-bottom: 36px; }
+        .t-card { background: #111; border: 1px solid #222; padding: 30px 26px; margin-bottom: 14px; }
+        .t-avatar {
+            width: 42px; height: 42px; background: #2a2a2a; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 17px; margin-bottom: 14px;
+        }
+        .stars { color: #f5a623; font-size: 17px; margin-bottom: 14px; letter-spacing: 2px; }
+        .t-text { font-size: 14.5px; line-height: 1.75; color: #bbb; margin-bottom: 14px; font-style: italic; }
+        .t-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #666; }
+
+        /* ── FAQ ── */
+        .faq { background: var(--off-white); }
+        .faq-list { margin-top: 36px; }
+        .faq-item { border-bottom: 1px solid var(--light-gray); }
+        .faq-q {
+            width: 100%; background: none; border: none;
+            padding: 20px 0; display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; text-align: left;
+            font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--black);
+        }
+        .faq-icon { font-size: 22px; font-weight: 300; color: #aaa; margin-left: 16px; flex-shrink: 0; }
+        .faq-a { display: none; padding: 0 0 20px; font-size: 14.5px; color: #666; line-height: 1.75; }
+        .faq-a.open { display: block; }
+
+        /* ── CTA SECTION ── */
+        .cta-sec { background: var(--black); color: var(--white); padding: 96px 24px; text-align: center; }
+        .cta-sec .section-lbl { justify-content: center; color: #444; }
+        .cta-sec .section-lbl::before { background: #444; }
+        .cta-sec .section-title { color: var(--white); margin: 0 auto 14px; max-width: 500px; }
+        .cta-sec p { color: #777; margin-bottom: 40px; font-size: 16px; }
+
+        /* ── CONTACT ── */
+        .contact-sec { background: var(--off-white); padding: 80px 24px; }
+        .contact-form { margin-top: 40px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; color: var(--black); }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 13px 15px; border: 1px solid var(--light-gray);
+            background: var(--white); font-family: 'Barlow', sans-serif; font-size: 15px; color: var(--black);
+            outline: none; appearance: none;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--black); }
+        .form-group textarea { height: 130px; resize: vertical; }
+        .form-submit {
+            width: 100%; padding: 19px; background: var(--black); color: var(--white);
+            border: 2px solid var(--black); cursor: pointer;
+            font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 800;
+            letter-spacing: 0.13em; text-transform: uppercase; transition: .2s;
+        }
+        .form-submit:hover { background: transparent; color: var(--black); }
+        .form-success { display: none; background: #eaffea; border: 1px solid #a3e6a3; padding: 16px 20px; margin-bottom: 20px; font-size: 14.5px; color: #2a6e2a; }
+
+        /* ── FOOTER ── */
+        footer { background: var(--black); color: var(--white); padding: 64px 24px 36px; }
+        .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; }
+        .footer-desc { font-size: 13.5px; color: #666; line-height: 1.75; margin-bottom: 48px; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px 24px; margin-bottom: 52px; }
+        .footer-col-title { font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: #555; font-weight: 600; margin-bottom: 14px; }
+        .footer-col a, .footer-col p { display: block; color: #999; font-size: 14px; margin-bottom: 9px; line-height: 1.5; }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom { border-top: 1px solid #181818; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .footer-bottom p, .footer-bottom a { font-size: 12px; color: #444; }
+        .footer-bottom a:hover { color: #777; }
+        .footer-bottom-links { display: flex; gap: 16px; }
+
+        /* ── STICKY BAR ── */
+        .sticky-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            display: grid; grid-template-columns: 1fr 1fr; z-index: 800;
+            box-shadow: 0 -2px 12px rgba(0,0,0,.15);
+        }
+        .sticky-bar a {
+            display: flex; align-items: center; justify-content: center; gap: 8px; padding: 17px;
+            font-family: 'Barlow Condensed', sans-serif; font-size: 13.5px; font-weight: 800;
+            letter-spacing: 0.12em; text-transform: uppercase;
+        }
+        .sticky-call { background: var(--black); color: var(--white); }
+        .sticky-contact { background: var(--white); color: var(--black); border-left: 2px solid #ddd; }
+
+        /* ── BACK LINK ── */
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: #888; cursor: pointer;
+            padding: 16px 24px; border-bottom: 1px solid var(--light-gray);
+            background: var(--white); width: 100%;
+        }
+        .back-link:hover { color: var(--black); }
+    </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+    <a href="tel:+4901782321256">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        +49 178 2321256
+    </a>
+    <a href="mailto:kontakt@agstrength.de">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        KONTAKT@AGSTRENGTH.DE
+    </a>
+    <div class="top-bar-icons">
+        <a href="#" aria-label="Instagram" style="background: linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://wa.me/4901782321256" aria-label="WhatsApp" style="background:#25D366;">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        </a>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav id="mainNav">
+    <div class="nav-top">
+        <div class="logo-wrap" onclick="showPage('home')">
+            <div>
+                <span class="logo-name">AG Strength</span>
+                <span class="logo-sub">Personal Training</span>
+            </div>
+        </div>
+        <span class="logo-slash">//</span>
+        <!-- Navigation Tabs — inline with logo -->
+        <div class="nav-tabs">
+            <button class="nav-tab" id="tab-pt" onclick="showPage('pt')">Personal Training</button>
+            <button class="nav-tab" id="tab-ern" onclick="showPage('ern')">Ernährungsberatung</button>
+            <button class="nav-tab" id="tab-oc" onclick="showPage('oc')">Online Coaching</button>
+        </div>
+        <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menü öffnen">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <button class="menu-close" onclick="closeMenu()" aria-label="Schließen">✕</button>
+    <button class="menu-nav-btn" onclick="showPage('pt'); closeMenu()">Personal Training</button>
+    <button class="menu-nav-btn" onclick="showPage('ern'); closeMenu()">Ernährungsberatung</button>
+    <button class="menu-nav-btn" onclick="showPage('oc'); closeMenu()">Online Coaching</button>
+    <a href="#faq" onclick="closeMenu()">FAQ</a>
+    <a href="#kontakt" onclick="showPage('home'); setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),100); closeMenu();" class="menu-cta">Erstgespräch vereinbaren</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&q=80');"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Personal Training,<br>Ernährungs&shy;beratung<br>und Online Coaching<br>in Stuttgart</h1>
+            <p>Ich bin Aaron, Personal Trainer in Stuttgart. Ich begleite dich auf deinem Weg zu mehr Fitness, einem definierten Körper, Muskelaufbau oder Gewichtsreduktion. Egal, welches Ziel du hast — gemeinsam schaffen wir es.</p>
+            <div class="hero-btns">
+                <a href="#kontakt" class="btn btn-white" onclick="setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),50)">Kostenloses Erstgespräch</a>
+                <button onclick="document.getElementById('vorteile').scrollIntoView({behavior:'smooth'})" class="btn btn-outline-white">Leistungen Ansehen</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-num">5+</div><div class="stat-lbl">Jahre Erfahrung</div></div>
+            <div class="stat-item"><div class="stat-num">100+</div><div class="stat-lbl">Betreute Klienten</div></div>
+            <div class="stat-item"><div class="stat-num">5.0</div><div class="stat-lbl">Google Bewertung</div></div>
+            <div class="stat-item"><div class="stat-num">100%</div><div class="stat-lbl">Individuelle Betreuung</div></div>
+        </div>
+        <div class="location-strip">Stuttgart &nbsp;·&nbsp; Persönlich &amp; Online</div>
+    </section>
+
+    <!-- ADVANTAGES -->
+    <section class="section advantages" id="vorteile">
+        <div class="section-lbl">Make your move. Now.</div>
+        <div class="section-title">Deine Vorteile auf einen Blick</div>
+        <div class="adv-grid">
+            <div class="adv-card"><div class="adv-num">01</div><div class="adv-title">1:1 Training</div><div class="adv-text">Persönliches Training, auf Wunsch auch 1:2 mit Partner, nach neuesten Methoden.</div></div>
+            <div class="adv-card"><div class="adv-num">02</div><div class="adv-title">Individuelle Planung</div><div class="adv-text">Trainingspläne exakt auf deine Ziele und Bedürfnisse zugeschnitten.</div></div>
+            <div class="adv-card"><div class="adv-num">03</div><div class="adv-title">Ernährungsberatung</div><div class="adv-text">Professionelle Ernährungsplanung als fester Teil deines Trainingskonzepts.</div></div>
+            <div class="adv-card"><div class="adv-num">04</div><div class="adv-title">Fortschrittskontrolle</div><div class="adv-text">Regelmäßige Analyse und Anpassung des Plans an deine Entwicklung.</div></div>
+            <div class="adv-card"><div class="adv-num">05</div><div class="adv-title">Flexible Zeiten</div><div class="adv-text">Training wann es in deinen Alltag passt — morgens, abends, am Wochenende.</div></div>
+            <div class="adv-card"><div class="adv-num">06</div><div class="adv-title">Online Coaching</div><div class="adv-text">Gleiche Qualität, digital — egal wo du bist. Training das mit dir reist.</div></div>
+            <div class="adv-card"><div class="adv-num">07</div><div class="adv-title">Klare Kommunikation</div><div class="adv-text">Du weißt immer was du tust, warum du es tust und wie es dir hilft.</div></div>
+            <div class="adv-card"><div class="adv-num">08</div><div class="adv-title">Langfristige Ergebnisse</div><div class="adv-text">Kein kurzfristiger Hype — ein System das dauerhaft und nachhaltig wirkt.</div></div>
+        </div>
+    </section>
+
+    <!-- SERVICES (clickable cards → sub-pages) -->
+    <section>
+        <div class="services-header">
+            <div class="section-lbl">Leistungen</div>
+            <div class="section-title">Wähle deinen Weg</div>
+        </div>
+        <div class="service-card" onclick="showPage('pt')">
+            <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80');"></div>
+            <div class="service-card-content">
+                <div class="service-card-title">Personaltraining</div>
+                <div class="service-card-text">Maßgeschneidertes 1:1 Training für schnelle, sichtbare Erfolge.</div>
+                <span class="service-link">Mehr Erfahren &amp; Preise</span>
+            </div>
+        </div>
+        <div class="service-card" onclick="showPage('ern')">
+            <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80');"></div>
+            <div class="service-card-content">
+                <div class="service-card-title">Ernährungsberatung</div>
+                <div class="service-card-text">Professionelle Begleitung deiner Ernährung als fester Teil des Trainingsplans.</div>
+                <span class="service-link">Mehr Erfahren &amp; Preise</span>
+            </div>
+        </div>
+        <div class="service-card" onclick="showPage('oc')">
+            <div class="service-card-bg" style="background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=1200&q=80');"></div>
+            <div class="service-card-content">
+                <div class="service-card-title">Online Coaching</div>
+                <div class="service-card-text">Gleiche strukturierte Betreuung wie vor Ort — nur digital. Egal wo du bist.</div>
+                <span class="service-link">Mehr Erfahren &amp; Preise</span>
+            </div>
+        </div>
+        <div class="services-spacer"></div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="ueber-mich">
+        <img class="about-image" src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=1200&q=80" alt="Personal Trainer Aaron — AG Strength Stuttgart">
+        <div class="about-content">
+            <div class="section-lbl">Über mich</div>
+            <div class="section-title">Wer ich bin</div>
+            <p style="margin-top:22px;">Ich bin Aaron, zertifizierter Personal Trainer aus Stuttgart. Fitness ist für mich nicht nur Beruf — es ist Leidenschaft. Mit AG Strength begleite ich Menschen dabei, ihre Ziele zu erreichen und dauerhaft gesünder und stärker zu werden.</p>
+            <p>Ob Muskelaufbau, Gewichtsreduktion oder einfach mehr Wohlbefinden im Alltag — ich entwickle einen individuellen Plan, der wirklich zu deinem Leben passt.</p>
+            <a href="#kontakt" class="btn btn-black" style="display:inline-block;margin-top:10px;" onclick="setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),50)">Kostenloses Erstgespräch</a>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials" id="bewertungen">
+        <div class="section-lbl">Kundenstimmen</div>
+        <div class="section-title">Das sagen meine Kunden</div>
+        <div class="t-card"><div class="t-avatar">M</div><div class="stars">★★★★★</div><p class="t-text">"In 3 Monaten mehr erreicht als in den letzten 3 Jahren alleine. Aaron ist fachlich top und menschlich ein echter Gewinn. Absolute Empfehlung!"</p><div class="t-name">— Markus T.</div></div>
+        <div class="t-card"><div class="t-avatar">S</div><div class="stars">★★★★★</div><p class="t-text">"Das Online Coaching ist perfekt für meinen vollen Alltag. Ich bin viel unterwegs und trotzdem bleibt mein Training konstant und effektiv."</p><div class="t-name">— Sarah K.</div></div>
+        <div class="t-card"><div class="t-avatar">T</div><div class="stars">★★★★★</div><p class="t-text">"Kombination aus Training und Ernährungsberatung hat alles verändert. Ich fühle mich stärker, definierter und verstehe endlich wie Ernährung wirklich funktioniert."</p><div class="t-name">— Thomas B.</div></div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+        <div class="section-lbl">FAQ</div>
+        <div class="section-title">Häufig gestellte Fragen</div>
+        <div class="faq-list">
+            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Bietest du auch Online Coaching an?<span class="faq-icon">+</span></button><div class="faq-a">Ja! Du bekommst einen individuellen Trainings- und Ernährungsplan, monatliche Video-Calls und dauerhaften WhatsApp Support.</div></div>
+            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Muss ich schon fit sein, um bei dir zu starten?<span class="faq-icon">+</span></button><div class="faq-a">Nein, absolut nicht! Ich begleite Menschen aller Fitnessstufen — vom kompletten Anfänger bis zum fortgeschrittenen Athleten.</div></div>
+            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Bietest du ein kostenloses Erstgespräch an?<span class="faq-icon">+</span></button><div class="faq-a">Ja, das Erstgespräch ist komplett kostenlos und unverbindlich. Wir reden über deine Ziele und schauen, welches Angebot am besten zu dir passt.</div></div>
+            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wo findet das Training statt?<span class="faq-icon">+</span></button><div class="faq-a">Das Training findet in Stuttgart statt. Beim Online Coaching trainierst du von überall — zuhause, im Hotel, im Urlaub.</div></div>
+            <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Wie lange bis ich Ergebnisse sehe?<span class="faq-icon">+</span></button><div class="faq-a">Viele Klienten spüren erste Veränderungen nach 3-4 Wochen. Sichtbare Ergebnisse zeigen sich typischerweise nach 6-8 Wochen konsequentem Training.</div></div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-sec">
+        <div class="section-lbl">Jetzt starten</div>
+        <div class="section-title">Bereit für den ersten Schritt?</div>
+        <p>Schreib mir und wir vereinbaren dein kostenloses, unverbindliches Erstgespräch.</p>
+        <a href="#kontakt" class="btn-outline-white-lg" onclick="setTimeout(()=>document.getElementById('kontakt').scrollIntoView({behavior:'smooth'}),50)">Erstgespräch vereinbaren</a>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact-sec section" id="kontakt">
+        <div class="section-lbl">Kontakt</div>
+        <div class="section-title">Schreib mir</div>
+        <form class="contact-form" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-success" id="formSuccess">Vielen Dank! Ich melde mich so schnell wie möglich bei dir. 💪</div>
+            <div class="form-group"><label>Name *</label><input type="text" placeholder="Dein Name" required></div>
+            <div class="form-group"><label>E-Mail *</label><input type="email" id="email" placeholder="deine@email.de" required></div>
+            <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+49 ..."></div>
+            <div class="form-group">
+                <label>Ich interessiere mich für</label>
+                <select>
+                    <option value="">Bitte wählen …</option>
+                    <option>Personal Training (vor Ort)</option>
+                    <option>Online Coaching</option>
+                    <option>Ernährungsberatung</option>
+                    <option>Paket: Training + Ernährung</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Nachricht</label><textarea placeholder="Erzähl mir von deinen Zielen …"></textarea></div>
+            <button type="submit" class="form-submit">Nachricht senden</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">AG Strength</div>
+        <p class="footer-desc">Personal Training, Ernährungsberatung und Online Coaching in Stuttgart.<br>Individuell, effektiv und nachhaltig.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="footer-col-title">Leistungen</div>
+                <a onclick="showPage('pt')">Personal Training</a>
+                <a onclick="showPage('ern')">Ernährungsberatung</a>
+                <a onclick="showPage('oc')">Online Coaching</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Kontakt</div>
+                <a href="tel:+4901782321256">+49 178 2321256</a>
+                <a href="https://wa.me/4901782321256">WhatsApp schreiben</a>
+                <a href="mailto:kontakt@agstrength.de">kontakt@agstrength.de</a>
+                <p>Stuttgart</p>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Info</div>
+                <a onclick="document.getElementById('vorteile').scrollIntoView({behavior:'smooth'})">Vorteile</a>
+                <a onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">FAQ</a>
+                <a onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">Kontakt</a>
+            </div>
+            <div class="footer-col">
+                <div class="footer-col-title">Social</div>
+                <a href="#">Instagram</a>
+                <a href="https://wa.me/4901782321256">WhatsApp</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 AG Strength · Aaron. Alle Rechte vorbehalten.</p>
+            <div class="footer-bottom-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+        </div>
+    </footer>
+</div><!-- /page-home -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: PERSONAL TRAINING
+═══════════════════════════════════════════════ -->
+<div id="page-pt" class="page">
+    <div class="back-link" onclick="showPage('home')">
+        ← Zurück zur Startseite
+    </div>
+
+    <!-- Sub-Hero -->
+    <div class="sub-hero">
+        <div class="sub-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&q=80');"></div>
+        <div class="sub-hero-content">
+            <h1>Personal Training</h1>
+            <p>1:1 Training in Stuttgart — maßgeschneidert auf deine Ziele.</p>
+        </div>
+    </div>
+
+    <!-- Includes -->
+    <div class="includes-section">
+        <div class="section-lbl">Leistungsumfang</div>
+        <div class="section-title">Was du bekommst</div>
+        <div class="includes-grid">
+            <div class="include-item">
+                <div class="include-icon">💪</div>
+                <div><div class="include-title">Persönliches 1:1 Training</div><div class="include-text">Jede Einheit wird individuell auf dich angepasst — Technik, Intensität und Übungsauswahl.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">📋</div>
+                <div><div class="include-title">Individueller Trainingsplan</div><div class="include-text">Kein generischer Plan — dein Programm wird speziell für deine Ziele und dein Level erstellt.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">📊</div>
+                <div><div class="include-title">Regelmäßige Fortschrittskontrolle</div><div class="include-text">Wir tracken deine Entwicklung und passen den Plan gezielt an — damit du immer Fortschritte machst.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">🥗</div>
+                <div><div class="include-title">Ernährungsberatung inklusive</div><div class="include-text">Training ohne Ernährung ist nur die halbe Miete. Du bekommst konkrete Empfehlungen.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">💬</div>
+                <div><div class="include-title">WhatsApp Support</div><div class="include-text">Fragen zwischen den Einheiten? Ich bin für dich da — per WhatsApp jederzeit erreichbar.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <section class="section pricing">
+        <div class="section-lbl">Preise</div>
+        <div class="section-title">Personal Training Pakete</div>
+        <div class="pricing-cards">
+
+            <div class="pricing-card">
+                <div class="p-badge">Starter · 3 Monate</div>
+                <div class="p-name">Personal Training Starter</div>
+                <div class="p-price">€299 <span>/Monat</span></div>
+                <div class="p-vat">Inkl. 19% MwSt.</div>
+                <ul class="p-features">
+                    <li>4 Trainingseinheiten / Monat (je 60 Min.)</li>
+                    <li>3 Monate Laufzeit</li>
+                    <li>Individueller Trainingsplan</li>
+                    <li>Körperfettanalyse zu Beginn</li>
+                    <li>Ernährungsempfehlungen</li>
+                    <li>WhatsApp Support</li>
+                </ul>
+                <a href="#kontakt-pt" class="btn btn-black" style="display:block;">Jetzt Anfragen</a>
+            </div>
+
+            <div class="pricing-card" style="border: 2px solid var(--black); position: relative;">
+                <div style="position:absolute;top:-12px;left:24px;background:var(--black);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;">Beliebtestes Paket</div>
+                <div class="p-badge">Premium · 6 Monate</div>
+                <div class="p-name">Personal Training Premium</div>
+                <div class="p-price">€249 <span>/Monat</span></div>
+                <div class="p-vat">Inkl. 19% MwSt. — Du sparst €300 gegenüber Starter</div>
+                <ul class="p-features">
+                    <li>4 Trainingseinheiten / Monat (je 60 Min.)</li>
+                    <li>6 Monate Laufzeit</li>
+                    <li>Trainings- &amp; Ernährungsplan</li>
+                    <li>6 Körperfettanalysen (monatlich)</li>
+                    <li>6 individuelle Trainingspläne</li>
+                    <li>WhatsApp Support rund um die Uhr</li>
+                    <li>Fortschrittsfoto-Analyse</li>
+                </ul>
+                <a href="#kontakt-pt" class="btn btn-black" style="display:block;">Jetzt Anfragen</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="p-badge">Intensiv · nach Vereinbarung</div>
+                <div class="p-name">Intensiv-Paket</div>
+                <div class="p-price" style="font-size:40px;">Individuell</div>
+                <div class="p-vat">Für 2x/Woche Training oder Wettkampfvorbereitung</div>
+                <ul class="p-features">
+                    <li>8+ Trainingseinheiten / Monat</li>
+                    <li>Laufzeit nach Absprache</li>
+                    <li>Komplette Trainings- &amp; Ernährungsplanung</li>
+                    <li>Wöchentliche Fortschrittsbesprechung</li>
+                    <li>Priority WhatsApp Support</li>
+                </ul>
+                <a href="#kontakt-pt" class="btn btn-black" style="display:block;">Angebot anfragen</a>
+            </div>
+
+        </div>
+        <p style="text-align:center;color:#aaa;margin-top:24px;font-size:13px;">Alle Pakete beinhalten ein kostenloses Erstgespräch vor dem Start.</p>
+    </section>
+
+    <!-- Contact on sub-page -->
+    <section class="contact-sec section" id="kontakt-pt">
+        <div class="section-lbl">Kontakt</div>
+        <div class="section-title">Starte jetzt</div>
+        <form class="contact-form" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-success" id="formSuccessPT">Vielen Dank! Ich melde mich so schnell wie möglich bei dir. 💪</div>
+            <div class="form-group"><label>Name *</label><input type="text" placeholder="Dein Name" required></div>
+            <div class="form-group"><label>E-Mail *</label><input type="email" placeholder="deine@email.de" required></div>
+            <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+49 ..."></div>
+            <div class="form-group">
+                <label>Gewünschtes Paket</label>
+                <select>
+                    <option value="">Bitte wählen …</option>
+                    <option>Personal Training Starter (3 Monate, €299/Monat)</option>
+                    <option>Personal Training Premium (6 Monate, €249/Monat)</option>
+                    <option>Intensiv-Paket (individuell)</option>
+                    <option>Ich bin noch unsicher — bitte beraten</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Dein Ziel</label><textarea placeholder="Was möchtest du erreichen? Wo stehst du gerade? …"></textarea></div>
+            <button type="submit" class="form-submit">Anfrage senden</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-logo">AG Strength</div>
+        <p class="footer-desc">Personal Training, Ernährungsberatung und Online Coaching in Stuttgart.</p>
+        <div class="footer-bottom">
+            <p>© 2026 AG Strength · Aaron.</p>
+            <div class="footer-bottom-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+        </div>
+    </footer>
+</div><!-- /page-pt -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: ERNÄHRUNGSBERATUNG
+═══════════════════════════════════════════════ -->
+<div id="page-ern" class="page">
+    <div class="back-link" onclick="showPage('home')">← Zurück zur Startseite</div>
+
+    <div class="sub-hero">
+        <div class="sub-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=1200&q=80');"></div>
+        <div class="sub-hero-content">
+            <h1>Ernährungs&shy;beratung</h1>
+            <p>Professionelle Ernährungsplanung als Teil deines Trainings — oder auch standalone.</p>
+        </div>
+    </div>
+
+    <div class="includes-section">
+        <div class="section-lbl">Leistungsumfang</div>
+        <div class="section-title">Was du bekommst</div>
+        <div class="includes-grid">
+            <div class="include-item">
+                <div class="include-icon">🥗</div>
+                <div><div class="include-title">Individueller Ernährungsplan</div><div class="include-text">Kein Einheitsplan — deine Ernährung wird auf deine Ziele, Vorlieben und deinen Alltag abgestimmt.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">📊</div>
+                <div><div class="include-title">Makro- &amp; Kalorienanalyse</div><div class="include-text">Du lernst wie viel du essen sollst, wovon — und warum. Verständlich erklärt, dauerhaft anwendbar.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">🔄</div>
+                <div><div class="include-title">Plan-Anpassungen</div><div class="include-text">Wenn sich dein Alltag oder deine Ziele ändern, passen wir die Ernährung entsprechend an.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">💊</div>
+                <div><div class="include-title">Supplement-Beratung</div><div class="include-text">Fundierte Empfehlungen zu sinnvollen Nahrungsergänzungsmitteln — ohne Verkaufsinteresse.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">💬</div>
+                <div><div class="include-title">Laufende Begleitung</div><div class="include-text">Fragen zu Lebensmitteln, Rezepten oder Restaurantbesuchen? Ich bin per WhatsApp erreichbar.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section pricing">
+        <div class="section-lbl">Preise</div>
+        <div class="section-title">Ernährungsberatung Pakete</div>
+        <div class="pricing-cards">
+
+            <div class="pricing-card">
+                <div class="p-badge">Einmalig</div>
+                <div class="p-name">Ernährungs-Check</div>
+                <div class="p-price">€149 <span>einmalig</span></div>
+                <div class="p-vat">Inkl. 19% MwSt.</div>
+                <ul class="p-features">
+                    <li>Analyse deiner aktuellen Ernährung</li>
+                    <li>Individueller Ernährungsplan (4 Wochen)</li>
+                    <li>Makro- &amp; Kalorienberechnung</li>
+                    <li>60-Min. Beratungsgespräch (Video/vor Ort)</li>
+                    <li>2 Wochen E-Mail Support</li>
+                </ul>
+                <a href="#kontakt-ern" class="btn btn-black" style="display:block;">Jetzt Anfragen</a>
+            </div>
+
+            <div class="pricing-card" style="border:2px solid var(--black);position:relative;">
+                <div style="position:absolute;top:-12px;left:24px;background:var(--black);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;">Empfohlen</div>
+                <div class="p-badge">3 Monate</div>
+                <div class="p-name">Ernährungs-Coaching</div>
+                <div class="p-price">€89 <span>/Monat</span></div>
+                <div class="p-vat">Inkl. 19% MwSt.</div>
+                <ul class="p-features">
+                    <li>Laufend angepasster Ernährungsplan</li>
+                    <li>Monatliche Check-in Calls</li>
+                    <li>Körperfettmessung &amp; Auswertung</li>
+                    <li>Supplement-Beratung</li>
+                    <li>WhatsApp Support</li>
+                    <li>Rezept-Empfehlungen &amp; Meal Prep Tipps</li>
+                </ul>
+                <a href="#kontakt-ern" class="btn btn-black" style="display:block;">Jetzt Anfragen</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="p-badge">Kombination</div>
+                <div class="p-name">Training + Ernährung</div>
+                <div class="p-price" style="font-size:38px;">Bestpreis</div>
+                <div class="p-vat">Kombination spart gegenüber Einzelbuchung</div>
+                <ul class="p-features">
+                    <li>Personal Training (4 Einheiten/Monat)</li>
+                    <li>Vollständige Ernährungsberatung</li>
+                    <li>Körperfettanalysen monatlich</li>
+                    <li>Rundum-Betreuung aus einer Hand</li>
+                    <li>Bester Preis — Preis auf Anfrage</li>
+                </ul>
+                <a href="#kontakt-ern" class="btn btn-black" style="display:block;">Kombiangebot anfragen</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contact-sec section" id="kontakt-ern">
+        <div class="section-lbl">Kontakt</div>
+        <div class="section-title">Starte jetzt</div>
+        <form class="contact-form" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-success" id="formSuccessErn">Vielen Dank! Ich melde mich so schnell wie möglich bei dir. 💪</div>
+            <div class="form-group"><label>Name *</label><input type="text" placeholder="Dein Name" required></div>
+            <div class="form-group"><label>E-Mail *</label><input type="email" placeholder="deine@email.de" required></div>
+            <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+49 ..."></div>
+            <div class="form-group">
+                <label>Gewünschtes Paket</label>
+                <select>
+                    <option value="">Bitte wählen …</option>
+                    <option>Ernährungs-Check (einmalig, €149)</option>
+                    <option>Ernährungs-Coaching (3 Monate, €89/Monat)</option>
+                    <option>Training + Ernährung Kombi</option>
+                    <option>Ich bin noch unsicher — bitte beraten</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Dein Ziel</label><textarea placeholder="Was möchtest du mit der Ernährungsberatung erreichen? …"></textarea></div>
+            <button type="submit" class="form-submit">Anfrage senden</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-logo">AG Strength</div>
+        <p class="footer-desc">Personal Training, Ernährungsberatung und Online Coaching in Stuttgart.</p>
+        <div class="footer-bottom">
+            <p>© 2026 AG Strength · Aaron.</p>
+            <div class="footer-bottom-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+        </div>
+    </footer>
+</div><!-- /page-ern -->
+
+
+<!-- ═══════════════════════════════════════════════
+     PAGE: ONLINE COACHING
+═══════════════════════════════════════════════ -->
+<div id="page-oc" class="page">
+    <div class="back-link" onclick="showPage('home')">← Zurück zur Startseite</div>
+
+    <div class="sub-hero">
+        <div class="sub-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1593079831268-3381b0db4a77?w=1200&q=80');"></div>
+        <div class="sub-hero-content">
+            <h1>Online Coaching</h1>
+            <p>Dieselbe Betreuung wie vor Ort — digital. Egal wo du bist.</p>
+        </div>
+    </div>
+
+    <div class="includes-section">
+        <div class="section-lbl">Leistungsumfang</div>
+        <div class="section-title">Training das mit dir reist</div>
+        <div class="includes-grid">
+            <div class="include-item">
+                <div class="include-icon">📱</div>
+                <div><div class="include-title">Individueller Trainingsplan</div><div class="include-text">Dein Plan passt zu deiner Ausrüstung — ob Gym, Zuhause oder Hotel. Immer griffbereit auf deinem Handy.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">🥗</div>
+                <div><div class="include-title">Ernährungsplan inklusive</div><div class="include-text">Training ohne Ernährung ist nur die halbe Miete. Dein Ernährungsplan ist von Anfang an dabei.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">📹</div>
+                <div><div class="include-title">Monatlicher Video-Call</div><div class="include-text">Einmal im Monat sprechen wir per Video über deine Fortschritte, Fragen und nächste Schritte.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">🔄</div>
+                <div><div class="include-title">Laufende Plan-Anpassung</div><div class="include-text">Dein Plan wird regelmäßig angepasst — damit du immer die passende Herausforderung hast.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">💬</div>
+                <div><div class="include-title">WhatsApp Support</div><div class="include-text">Fragen, Check-ins, Fortschrittsfotos — ich bin für dich da, 7 Tage die Woche per WhatsApp.</div></div>
+            </div>
+            <div class="include-item">
+                <div class="include-icon">🗓️</div>
+                <div><div class="include-title">Flexible Laufzeit</div><div class="include-text">Monatlich kündbar. Kein langes Commitment nötig — du entscheidest wie lange du dabei bist.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section pricing">
+        <div class="section-lbl">Preise</div>
+        <div class="section-title">Online Coaching Pakete</div>
+        <div class="pricing-cards">
+
+            <div class="pricing-card">
+                <div class="p-badge">Flexibel · monatlich kündbar</div>
+                <div class="p-name">Online Coaching Basic</div>
+                <div class="p-price">€79 <span>/Monat</span></div>
+                <div class="p-vat">Inkl. 19% MwSt.</div>
+                <ul class="p-features">
+                    <li>Individueller Trainingsplan</li>
+                    <li>Ernährungsrichtlinien</li>
+                    <li>14-tägiger Check-in per Chat</li>
+                    <li>WhatsApp Support (Mo–Fr)</li>
+                    <li>Monatliche Plan-Aktualisierung</li>
+                </ul>
+                <a href="#kontakt-oc" class="btn btn-black" style="display:block;">Jetzt Anfragen</a>
+            </div>
+
+            <div class="pricing-card" style="border:2px solid var(--black);position:relative;">
+                <div style="position:absolute;top:-12px;left:24px;background:var(--black);color:var(--white);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;">Beliebtestes Paket</div>
+                <div class="p-badge">Premium · monatlich kündbar</div>
+                <div class="p-name">Online Coaching Premium</div>
+                <div class="p-price">€99 <span>/Monat</span></div>
+                <div class="p-vat">Inkl. 19% MwSt.</div>
+                <ul class="p-features">
+                    <li>Individueller Trainings- &amp; Ernährungsplan</li>
+                    <li>Monatlicher Video-Call (30 Min.)</li>
+                    <li>Wöchentlicher Check-in per Video</li>
+                    <li>Fortschrittsanalyse &amp; Körperfett-Tracking</li>
+                    <li>WhatsApp Support 7 Tage / Woche</li>
+                    <li>Supplement-Beratung</li>
+                    <li>Notfall-Support bei Verletzungen</li>
+                </ul>
+                <a href="#kontakt-oc" class="btn btn-black" style="display:block;">Jetzt Anfragen</a>
+            </div>
+
+            <div class="pricing-card">
+                <div class="p-badge">6 Monate · bester Preis</div>
+                <div class="p-name">Online Coaching 6-Monats-Deal</div>
+                <div class="p-price">€79 <span>/Monat</span></div>
+                <div class="p-vat">Inkl. 19% MwSt. — statt €99/Monat · Du sparst €120</div>
+                <ul class="p-features">
+                    <li>Alle Leistungen aus Online Coaching Premium</li>
+                    <li>6 Monate Laufzeit (Einmalzahlung oder monatlich)</li>
+                    <li>Maximale Ersparnis</li>
+                    <li>Ideal für nachhaltige Ergebnisse</li>
+                </ul>
+                <a href="#kontakt-oc" class="btn btn-black" style="display:block;">Jetzt Anfragen</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Testimonials on OC page -->
+    <section class="testimonials">
+        <div class="section-lbl">Kundenstimmen</div>
+        <div class="section-title">Das sagen Online-Klienten</div>
+        <div class="t-card"><div class="t-avatar">S</div><div class="stars">★★★★★</div><p class="t-text">"Das Online Coaching ist perfekt für meinen vollen Alltag. Ich bin viel unterwegs und trotzdem bleibt mein Training konstant und effektiv."</p><div class="t-name">— Sarah K.</div></div>
+        <div class="t-card"><div class="t-avatar">J</div><div class="stars">★★★★★</div><p class="t-text">"Ich war skeptisch ob Online genauso gut funktioniert. Nach 4 Monaten kann ich sagen: absolut ja! Die Pläne sind top, der Support ist schnell und die Ergebnisse sprechen für sich."</p><div class="t-name">— Jonas F.</div></div>
+    </section>
+
+    <section class="contact-sec section" id="kontakt-oc">
+        <div class="section-lbl">Kontakt</div>
+        <div class="section-title">Starte jetzt</div>
+        <form class="contact-form" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-success" id="formSuccessOC">Vielen Dank! Ich melde mich so schnell wie möglich bei dir. 💪</div>
+            <div class="form-group"><label>Name *</label><input type="text" placeholder="Dein Name" required></div>
+            <div class="form-group"><label>E-Mail *</label><input type="email" placeholder="deine@email.de" required></div>
+            <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+49 ..."></div>
+            <div class="form-group">
+                <label>Gewünschtes Paket</label>
+                <select>
+                    <option value="">Bitte wählen …</option>
+                    <option>Online Coaching Basic (€79/Monat)</option>
+                    <option>Online Coaching Premium (€99/Monat)</option>
+                    <option>Online Coaching 6 Monate (€79/Monat)</option>
+                    <option>Ich bin noch unsicher — bitte beraten</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Dein Ziel</label><textarea placeholder="Was möchtest du durch das Online Coaching erreichen? …"></textarea></div>
+            <button type="submit" class="form-submit">Anfrage senden</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-logo">AG Strength</div>
+        <p class="footer-desc">Personal Training, Ernährungsberatung und Online Coaching in Stuttgart.</p>
+        <div class="footer-bottom">
+            <p>© 2026 AG Strength · Aaron.</p>
+            <div class="footer-bottom-links"><a href="#">Impressum</a><a href="#">Datenschutz</a></div>
+        </div>
+    </footer>
+</div><!-- /page-oc -->
+
+
+<!-- STICKY BOTTOM BAR (always visible) -->
+<div class="sticky-bar">
+    <a href="tel:+4901782321256" class="sticky-call">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Anrufen
+    </a>
+    <a href="#" class="sticky-contact" onclick="goToContact()">Erstgespräch</a>
+</div>
+
+
+<script>
+    // ── ROUTING ──
+    const pages = ['home','pt','ern','oc'];
+    const tabs  = { pt:'tab-pt', ern:'tab-ern', oc:'tab-oc' };
+
+    function showPage(id) {
+        // hide all pages
+        pages.forEach(p => {
+            const el = document.getElementById('page-'+p);
+            if (el) el.classList.remove('active');
+        });
+        // remove all active tabs
+        Object.values(tabs).forEach(t => {
+            const el = document.getElementById(t);
+            if (el) el.classList.remove('active');
+        });
+        // show target
+        const target = document.getElementById('page-'+id);
+        if (target) target.classList.add('active');
+        // activate tab
+        if (tabs[id]) {
+            const tab = document.getElementById(tabs[id]);
+            if (tab) tab.classList.add('active');
+        }
+        // scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToContact() {
+        const activePage = pages.find(p => {
+            const el = document.getElementById('page-'+p);
+            return el && el.classList.contains('active');
+        });
+        if (activePage === 'pt') {
+            document.getElementById('kontakt-pt').scrollIntoView({behavior:'smooth'});
+        } else if (activePage === 'ern') {
+            document.getElementById('kontakt-ern').scrollIntoView({behavior:'smooth'});
+        } else if (activePage === 'oc') {
+            document.getElementById('kontakt-oc').scrollIntoView({behavior:'smooth'});
+        } else {
+            document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+        }
+    }
+
+    // ── FAQ ──
+    function toggleFaq(btn) {
+        const answer = btn.nextElementSibling;
+        const icon = btn.querySelector('.faq-icon');
+        const isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+        document.querySelectorAll('.faq-icon').forEach(i => i.textContent = '+');
+        if (!isOpen) { answer.classList.add('open'); icon.textContent = '−'; }
+    }
+
+    // ── FORM ──
+    function handleSubmit(e) {
+        e.preventDefault();
+        const emailInput = e.target.querySelector('[type="email"]');
+        const nameInput  = e.target.querySelector('[type="text"]');
+        if (!nameInput.value.trim() || !emailInput.value.trim()) {
+            alert('Bitte fülle Name und E-Mail aus.'); return;
+        }
+        // show success inside this form
+        const successEl = e.target.querySelector('.form-success');
+        if (successEl) successEl.style.display = 'block';
+        e.target.reset();
+    }
+
+    // ── CLOSE MENU ──
+    function closeMenu() {
+        document.getElementById('mobileMenu').classList.remove('open');
+    }
+    document.getElementById('mobileMenu').addEventListener('click', function(e) {
+        if (e.target === this) closeMenu();
+    });
+</script>
+</body>
+</html>
