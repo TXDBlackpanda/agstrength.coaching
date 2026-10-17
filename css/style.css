@@ -572,3 +572,7 @@ a.back-link { color: #888; }
 /* ── Online Coaching: Kettlebell-Foto ── */
 .sub-hero-oc .sub-hero-bg { background-image: url('/img/aaron-kettlebell-stand.webp'); background-position: 50% 57%; }
 @media (min-width: 900px) { .sub-hero-oc .sub-hero-bg { background-position: 50% 36%; } }
+
+/* ── Zahlenbalken: 2 Werte ── */
+.stats-grid { grid-template-columns: 1fr 1fr; }
+@media (min-width: 900px) { .stats-grid { grid-template-columns: repeat(2, minmax(0, 320px)); justify-content: center; gap: 20px 120px; } }
