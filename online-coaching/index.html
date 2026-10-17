@@ -140,19 +140,25 @@
     <div class="section-lbl">Kontakt</div>
     <div class="section-title">Starte jetzt</div>
     <form class="contact-form" onsubmit="handleSubmit(event)" novalidate>
+        <input type="hidden" name="access_key" value="2bad99c6-6e78-4601-b897-91cc962143d2">
+        <input type="hidden" name="subject" value="Neue Anfrage über agstrength.de (Online Coaching)">
+        <input type="hidden" name="from_name" value="agstrength.de">
+        <input type="hidden" name="seite" value="Online Coaching">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="form-success">Vielen Dank! Ich melde mich so schnell wie möglich bei dir. 💪</div>
-        <div class="form-group"><label>Name *</label><input type="text" placeholder="Dein Name" required></div>
-        <div class="form-group"><label>E-Mail *</label><input type="email" placeholder="deine@email.de" required></div>
-        <div class="form-group"><label>Telefon</label><input type="tel" placeholder="+49 ..."></div>
+        <div class="form-error">Das hat leider nicht geklappt. Schreib mir bitte direkt per <a href="https://wa.me/491782321256" target="_blank" rel="noopener">WhatsApp</a> oder an <a href="mailto:kontakt@agstrength.de">kontakt@agstrength.de</a>.</div>
+        <div class="form-group"><label>Name *</label><input type="text" name="name" autocomplete="name" placeholder="Dein Name" required></div>
+        <div class="form-group"><label>E-Mail *</label><input type="email" name="email" autocomplete="email" placeholder="deine@email.de" required></div>
+        <div class="form-group"><label>Telefon</label><input type="tel" name="telefon" autocomplete="tel" placeholder="+49 ..."></div>
         <div class="form-group">
             <label>Gewünschtes Paket</label>
-            <select>
+            <select name="paket">
                 <option value="">Bitte wählen …</option>
                 <option>Online Coaching (199 € / Monat)</option>
                 <option>Ich bin noch unsicher, bitte beraten</option>
             </select>
         </div>
-        <div class="form-group"><label>Dein Ziel</label><textarea placeholder="Was möchtest du durch das Online Coaching erreichen? …"></textarea></div>
+        <div class="form-group"><label>Dein Ziel</label><textarea name="nachricht" placeholder="Was möchtest du durch das Online Coaching erreichen? …"></textarea></div>
         <button type="submit" class="form-submit">Anfrage senden</button>
     </form>
 </section>

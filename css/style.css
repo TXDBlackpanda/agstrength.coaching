@@ -362,6 +362,10 @@ nav {
 }
 .form-submit:hover { background: transparent; color: var(--black); }
 .form-success { display: none; background: #eaffea; border: 1px solid #a3e6a3; padding: 16px 20px; margin-bottom: 20px; font-size: 14.5px; color: #2a6e2a; }
+.form-error { display: none; background: #fff0f0; border: 1px solid #f0b4b4; padding: 16px 20px; margin-bottom: 20px; font-size: 14.5px; color: #8a2a2a; line-height: 1.6; }
+.form-error a { color: inherit; text-decoration: underline; }
+.form-submit:disabled { opacity: .6; cursor: wait; }
+.contact-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 /* ── FOOTER ── */
 footer { background: var(--black); color: var(--white); padding: 64px 24px 36px; }
@@ -474,6 +478,7 @@ a.back-link { color: #888; }
     .contact-sec { padding: 112px var(--gutter); }
     .contact-form { max-width: 760px; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
     .contact-form .form-success,
+    .contact-form .form-error,
     .contact-form .form-group:last-of-type,
     .contact-form .form-submit { grid-column: 1 / -1; }
 

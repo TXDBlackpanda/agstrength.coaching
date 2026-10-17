@@ -9,16 +9,48 @@ function toggleFaq(btn) {
 }
 
 // ── FORM ──
-function handleSubmit(e) {
+async function handleSubmit(e) {
     e.preventDefault();
-    const emailInput = e.target.querySelector('[type="email"]');
-    const nameInput  = e.target.querySelector('[type="text"]');
+    const form = e.target;
+    const nameInput  = form.querySelector('[name="name"]');
+    const emailInput = form.querySelector('[name="email"]');
+    const successEl  = form.querySelector('.form-success');
+    const errorEl    = form.querySelector('.form-error');
+    const button     = form.querySelector('.form-submit');
+
     if (!nameInput.value.trim() || !emailInput.value.trim()) {
         alert('Bitte fülle Name und E-Mail aus.'); return;
     }
-    const successEl = e.target.querySelector('.form-success');
-    if (successEl) successEl.style.display = 'block';
-    e.target.reset();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+        alert('Bitte gib eine gültige E-Mail-Adresse ein.'); return;
+    }
+
+    successEl.style.display = 'none';
+    errorEl.style.display = 'none';
+    const label = button.textContent;
+    button.disabled = true;
+    button.textContent = 'Wird gesendet …';
+
+    const data = Object.fromEntries(new FormData(form));
+    data.replyto = data.email;
+
+    try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(data)
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok || json.success === false) throw new Error(json.message || res.status);
+        successEl.style.display = 'block';
+        form.reset();
+    } catch (err) {
+        errorEl.style.display = 'block';
+    } finally {
+        button.disabled = false;
+        button.textContent = label;
+        (successEl.style.display === 'block' ? successEl : errorEl).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
 }
 
 // ── CLOSE MENU ──
