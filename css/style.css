@@ -568,3 +568,7 @@ a.back-link { color: #888; }
 /* ── Personal Training: Medizinball-Foto ── */
 .sub-hero-pt .sub-hero-bg { background-position: 50% 58%; }
 @media (min-width: 900px) { .sub-hero-pt .sub-hero-bg { background-position: 50% 44%; } }
+
+/* ── Online Coaching: Stadt-Foto ── */
+.sub-hero-oc .sub-hero-bg { background-position: 55% 63%; }
+@media (min-width: 900px) { .sub-hero-oc .sub-hero-bg { background-position: 50% 56%; } }
