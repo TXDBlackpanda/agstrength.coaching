@@ -247,9 +247,10 @@ nav {
 .services-spacer { height: 40px; background: var(--off-white); }
 
 /* ── ABOUT ── */
-.about-picture { display: block; }
-.about-image { width: 100%; height: 440px; object-fit: cover; object-position: 50% 30%; background: #1a1a1a; }
-.about-content { padding: 52px 24px; background: var(--off-white); }
+.about { background: var(--off-white); }
+.about-picture { display: block; margin-top: 32px; }
+.about-image { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; background: #1a1a1a; }
+.about-content { padding-top: 32px; }
 .about-content p { font-size: 15.5px; line-height: 1.8; color: #555; margin-bottom: 22px; }
 
 /* ── PRICING ── */
@@ -465,10 +466,9 @@ a.back-link { color: #888; }
     .services-spacer { height: 112px; }
 
     /* About */
-    #ueber-mich { display: grid; grid-template-columns: 1fr 1fr; background: var(--off-white); }
-    .about-picture { height: 100%; }
-    .about-image { height: 100%; min-height: 620px; }
-    .about-content { padding: 96px var(--gutter) 96px 72px; align-self: center; }
+    .about-body { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 52px; }
+    .about-picture { margin-top: 0; }
+    .about-content { padding-top: 0; }
     .about-content p { font-size: 16.5px; }
 
     /* FAQ */
