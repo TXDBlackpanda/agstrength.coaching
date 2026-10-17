@@ -556,3 +556,11 @@ a.back-link { color: #888; }
 @media (min-width: 900px) {
     .hero-bg { background-position: 50% 75%; background-size: cover; }
 }
+
+/* ── Abwechselnde Hintergründe auf der Startseite ── */
+#leistungen { background: var(--white); }
+#leistungen .services-header,
+#leistungen .service-grid,
+#leistungen .services-spacer { background: transparent; }
+.about { background: var(--off-white); }
+#faq { background: var(--white); }
