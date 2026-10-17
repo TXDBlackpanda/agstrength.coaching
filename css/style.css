@@ -550,3 +550,9 @@ a.back-link { color: #888; }
         background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.1) 100%);
     }
 }
+
+/* ── Hero-Foto Startseite ── */
+.hero-bg { background-position: 58% 100%; background-size: auto 150%; }
+@media (min-width: 900px) {
+    .hero-bg { background-position: 50% 75%; background-size: cover; }
+}
