@@ -514,3 +514,39 @@ a.back-link { color: #888; }
 @media (min-width: 1200px) {
     .pricing-cards { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
 }
+
+/* ── DESKTOP: Split-Hero mit eigenem Foto rechts ── */
+@media (min-width: 900px) {
+    .hero { background: var(--black); }
+    .hero-bg { left: 50%; }
+    .hero-overlay {
+        background:
+            linear-gradient(to right, var(--black) 50%, rgba(10,10,10,.6) 56%, rgba(10,10,10,0) 72%),
+            linear-gradient(to top, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 40%);
+    }
+    .sub-hero { background: var(--black); }
+    .sub-hero-bg { left: 50%; filter: brightness(.8); }
+    .sub-hero::before {
+        content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+        background: linear-gradient(to right, var(--black) 50%, rgba(10,10,10,.5) 57%, rgba(10,10,10,0) 72%);
+    }
+}
+
+/* ── Eigene Fotos: hellere Bilder, Verlauf statt Abdunkeln ── */
+.service-card-bg { filter: brightness(.85); }
+.service-card:hover .service-card-bg { filter: brightness(.75); }
+.service-card::before {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.45) 40%, rgba(0,0,0,0) 70%);
+}
+@media (max-width: 899px) {
+    .hero-bg { filter: brightness(1.15); }
+    .hero-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.75) 42%, rgba(0,0,0,.2) 72%, rgba(0,0,0,.1) 100%);
+    }
+    .sub-hero-bg { filter: brightness(.9); }
+    .sub-hero::before {
+        content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+        background: linear-gradient(to top, rgba(0,0,0,.85) 0%, rgba(0,0,0,.35) 50%, rgba(0,0,0,.1) 100%);
+    }
+}
