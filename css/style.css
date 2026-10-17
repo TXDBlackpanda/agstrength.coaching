@@ -569,13 +569,6 @@ a.back-link { color: #888; }
 .sub-hero-pt .sub-hero-bg { background-position: 50% 58%; }
 @media (min-width: 900px) { .sub-hero-pt .sub-hero-bg { background-position: 50% 44%; } }
 
-/* ── Online Coaching: Stadt-Foto ── */
-.sub-hero-oc .sub-hero-bg { background-image: url('/img/aaron-stadt.webp'); background-position: 55% 63%; }
-@media (min-width: 900px) {
-    .sub-hero-oc .sub-hero-bg { left: 0; background-image: url('/img/aaron-stadt-banner.webp'); background-position: 100% 30%; filter: brightness(.9); }
-    .sub-hero-oc::before {
-        background:
-            linear-gradient(to right, rgba(10,10,10,.9) 0%, rgba(10,10,10,.75) 40%, rgba(10,10,10,.55) 58%, rgba(10,10,10,.3) 67%, rgba(10,10,10,.08) 76%, rgba(10,10,10,0) 82%),
-            linear-gradient(to top, rgba(0,0,0,.45) 0%, rgba(0,0,0,0) 50%);
-    }
-}
+/* ── Online Coaching: Kettlebell-Foto ── */
+.sub-hero-oc .sub-hero-bg { background-image: url('/img/aaron-kettlebell-stand.webp'); background-position: 50% 57%; }
+@media (min-width: 900px) { .sub-hero-oc .sub-hero-bg { background-position: 50% 36%; } }
