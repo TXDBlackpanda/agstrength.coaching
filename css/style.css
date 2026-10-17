@@ -576,3 +576,15 @@ a.back-link { color: #888; }
 /* ── Zahlenbalken: 2 Werte ── */
 .stats-grid { grid-template-columns: 1fr 1fr; }
 @media (min-width: 900px) { .stats-grid { grid-template-columns: repeat(2, minmax(0, 320px)); justify-content: center; gap: 20px 120px; } }
+
+/* ── Top-Bar: flacher, rechtsbündig ── */
+.top-bar { padding: 5px 16px; gap: 14px; font-size: 10.5px; justify-content: flex-end; flex-wrap: nowrap; }
+.top-bar a { gap: 5px; white-space: nowrap; }
+.top-bar svg { width: 11px; height: 11px; }
+.top-bar-icons { gap: 6px; }
+.top-bar-icons a { width: 20px; height: 20px; }
+.top-bar-icons svg { width: 11px; height: 11px; }
+@media (max-width: 380px) { .top-bar { gap: 10px; font-size: 9.5px; } }
+@media (min-width: 900px) {
+    .top-bar { padding: 6px var(--gutter); font-size: 11px; gap: 22px; }
+}
