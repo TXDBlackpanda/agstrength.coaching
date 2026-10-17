@@ -564,3 +564,7 @@ a.back-link { color: #888; }
 #leistungen .services-spacer { background: transparent; }
 .about { background: var(--off-white); }
 #faq { background: var(--white); }
+
+/* ── Personal Training: Medizinball-Foto ── */
+.sub-hero-pt .sub-hero-bg { background-position: 50% 58%; }
+@media (min-width: 900px) { .sub-hero-pt .sub-hero-bg { background-position: 50% 44%; } }
